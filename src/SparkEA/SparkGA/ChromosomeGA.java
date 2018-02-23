@@ -5,6 +5,7 @@
  */
 package SparkEA.SparkGA;
 
+import SparkEA.Chromosome;
 import SparkEA.Gene;
 
 /**
@@ -64,6 +65,14 @@ public class ChromosomeGA implements SparkEA.Chromosome{
     
     public void crossOver(){
         
+    }
+
+    @Override
+    public int compareTo(Chromosome t) {
+        if(this.getFitnessValue() <= t.getFitnessValue()){
+            return -1;
+        }
+        return 1;
     }
    
 }

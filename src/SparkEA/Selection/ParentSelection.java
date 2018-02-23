@@ -5,10 +5,26 @@
  */
 package SparkEA.Selection;
 
+import SparkEA.Chromosome;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  *
  * @author anshal
  */
 public class ParentSelection {
     
+    public List<Chromosome> RouletteWheelSelection(List<Chromosome> population){
+        return Utility.RouletteWheel(population,population.size());
+    }
+    
+    public List<Chromosome> RouletteWheelSelection(List<Chromosome> population, int selectionSize){
+        return Utility.RouletteWheel(population, selectionSize);
+    }
+    
+    
+    
+  
 }

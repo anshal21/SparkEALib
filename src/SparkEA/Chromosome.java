@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author anshal
  */
-public interface Chromosome {
+public interface Chromosome extends Comparable<Chromosome>{
    public void print();
    public double getFitnessValue();
    public Gene getRandomGene();

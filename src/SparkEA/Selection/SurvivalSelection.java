@@ -5,10 +5,21 @@
  */
 package SparkEA.Selection;
 
+import SparkEA.Chromosome;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author anshal
  */
 public class SurvivalSelection {
+     private double[] cumulativeFitness;
+    
+     public List<Chromosome> RouletteWheelSelection(List<Chromosome> population, List<Chromosome> offSpring){
+        int selectionSize = population.size();
+        population.addAll(offSpring);
+        return Utility.RouletteWheel(population, selectionSize);
+    }
     
 }
