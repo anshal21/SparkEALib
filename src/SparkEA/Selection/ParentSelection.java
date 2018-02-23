@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SparkEA;
-
-import java.util.List;
+package SparkEA.Selection;
 
 /**
  *
  * @author anshal
  */
-public interface Chromosome {
-   public void print();
-   public double getFitnessValue();
-   public Gene getRandomGene();
-   public Gene getGene(int index);
- 
+public class ParentSelection {
+    
 }

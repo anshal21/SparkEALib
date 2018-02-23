@@ -18,6 +18,12 @@ public class GeneGA implements SparkEA.Gene {
         this.geneValue = ((int)(10*Math.random()))%2;
     }
     
+    public void setRandom(double prob){
+        double token = Math.random();
+        if(token<=prob)
+            this.geneValue = 1-this.geneValue;
+    }
+    
     public void setGeneValue(int value){
         this.geneValue = value;
     }

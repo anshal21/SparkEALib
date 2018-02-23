@@ -13,10 +13,22 @@ import SparkEA.Gene;
  */
 public class ChromosomeGA implements SparkEA.Chromosome{
     
-    private Gene[] genes;
+    private GeneGA[] genes;
+    private double mutationProb;
     
     public ChromosomeGA(int size){
         genes = new GeneGA[size];
+        for(int i=0; i<size; i++){
+            genes[i].setRandom();
+        }
+    }
+    
+    public void setMutationProbability(double prob){
+        this.mutationProb = prob;
+    }
+    
+    public double getMutationProbability(){
+           return this.mutationProb;
     }
     
     @Override
@@ -39,10 +51,19 @@ public class ChromosomeGA implements SparkEA.Chromosome{
         return null;
     }
 
-    @Override
-    public void setGene(int index, Gene gene) {
-        
+
+    public void setGene(int index, GeneGA gene) {
+        this.genes[index] = gene;
     }
     
+    public void mutate(){
+        for(int i=0; i<genes.length; i++){
+            genes[i].setRandom(this.mutationProb);
+        }
+    }
+    
+    public void crossOver(){
+        
+    }
    
 }
