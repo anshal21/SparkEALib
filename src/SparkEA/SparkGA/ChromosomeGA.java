@@ -7,6 +7,8 @@ package SparkEA.SparkGA;
 
 import SparkEA.Chromosome;
 import SparkEA.Gene;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,12 +18,23 @@ public class ChromosomeGA implements SparkEA.Chromosome{
     
     private GeneGA[] genes;
     private double mutationProb;
+    private GAUtils gaUtils;
     
-    public ChromosomeGA(int size){
+    public ChromosomeGA(int size, GAUtils gaUtils){
         genes = new GeneGA[size];
         for(int i=0; i<size; i++){
             genes[i].setRandom();
         }
+        this.gaUtils = gaUtils;
+        
+    }
+    public ChromosomeGA(ChromosomeGA c, GAUtils gaUtils){
+        genes = new GeneGA[c.genes.length];
+        for(int i=0; i<genes.length; i++){
+            genes[i] = c.genes[i];
+        }
+        this.gaUtils = gaUtils;
+        
     }
     
     public void setMutationProbability(double prob){
@@ -39,7 +52,7 @@ public class ChromosomeGA implements SparkEA.Chromosome{
     
     @Override
     public double getFitnessValue() {
-        return 0;
+        return gaUtils.fitnessFunction(this);
     }
 
     @Override
@@ -63,9 +76,21 @@ public class ChromosomeGA implements SparkEA.Chromosome{
         }
     }
     
-    public void crossOver(){
-        
-    }
+    public ArrayList<ChromosomeGA> uniformCrossover(ChromosomeGA chrome2){
+        ArrayList<ChromosomeGA> children = new ArrayList<>();
+        ChromosomeGA c1 = new ChromosomeGA(this, gaUtils);
+        ChromosomeGA c2 = new ChromosomeGA(chrome2, gaUtils);
+        for(int i=0; i<genes.length; i++){
+            if(Math.random() > 0.5){
+                c1.genes[i] = chrome2.genes[i];
+                c2.genes[i] = this.genes[i];
+            }
+        }
+        children.add(c1);
+        children.add(c2);
+        return children;
+    } 
+    
 
     @Override
     public int compareTo(Chromosome t) {
