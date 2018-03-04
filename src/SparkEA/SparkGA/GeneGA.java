@@ -11,7 +11,7 @@ package SparkEA.SparkGA;
  */
 public class GeneGA implements SparkEA.Gene {
     
-    private int geneValue;
+    public int geneValue;
     
     @Override
     public void setRandom() {
@@ -26,6 +26,10 @@ public class GeneGA implements SparkEA.Gene {
     
     public void setGeneValue(int value){
         this.geneValue = value;
+    }
+    @Override
+    public double getGeneValue(){
+        return geneValue;
     }
     
 }

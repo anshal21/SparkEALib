@@ -5,16 +5,18 @@
  */
 package SparkEA;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author anshal
  */
-public interface Chromosome extends Comparable<Chromosome>{
+public interface Chromosome extends Comparable<Chromosome>, Serializable{
    public void print();
    public double getFitnessValue();
    public Gene getRandomGene();
    public Gene getGene(int index);
+   public int getLength();
  
 }

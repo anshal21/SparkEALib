@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class ParentSelection {
     
-    public List<Chromosome> RouletteWheelSelection(List<Chromosome> population){
+    public static List<Chromosome> RouletteWheelSelection(List<Chromosome> population){
         return Utility.RouletteWheel(population,population.size());
     }
     
-    public List<Chromosome> RouletteWheelSelection(List<Chromosome> population, int selectionSize){
+    public static List<Chromosome> RouletteWheelSelection(List<Chromosome> population, int selectionSize){
         return Utility.RouletteWheel(population, selectionSize);
     }
     

@@ -33,6 +33,7 @@ public class Utility {
     
     public static List<Chromosome> RouletteWheel(List<Chromosome> population, int selectionSize){
         double[] cumulativeFitness;
+        System.err.println(population.size());
         cumulativeFitness = new double[population.size()];
         cumulativeFitness[0] = population.get(0).getFitnessValue();
         for(int i=1; i<population.size(); i++){
@@ -45,5 +46,19 @@ public class Utility {
             selectedParents.add(population.get(index));
         }
         return selectedParents;
+    }
+    public static Chromosome getFittest(List<Chromosome> population){
+        if(population.size()==0)
+            return null;
+        Chromosome best = population.get(0);
+        double maxFitness = population.get(0).getFitnessValue();
+        for(int i=1; i<population.size(); i++){
+            if(maxFitness < population.get(i).getFitnessValue()){
+                maxFitness = population.get(i).getFitnessValue();
+                best = population.get(i);
+            }
+        }
+        return best;
+        
     }
 }

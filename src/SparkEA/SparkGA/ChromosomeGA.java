@@ -9,6 +9,8 @@ import SparkEA.Chromosome;
 import SparkEA.Gene;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,24 +20,34 @@ public class ChromosomeGA implements SparkEA.Chromosome{
     
     private GeneGA[] genes;
     private double mutationProb;
-    private GAUtils gaUtils;
+    private SParkGAAccessory access;
+    public ChromosomeGA(int size, SParkGAAccessory sp) {
+        try {
+            genes = new GeneGA[size];
+            for(int i=0; i<size; i++){
+                genes[i] = new GeneGA();
+                genes[i].setRandom();
+            }
+            this.access = (SParkGAAccessory)sp.clone();
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(ChromosomeGA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public ChromosomeGA(ChromosomeGA c){
+        try {
+            genes = new GeneGA[c.genes.length];
+            for(int i=0; i<genes.length; i++){
+                genes[i] = new GeneGA();
+                genes[i].setGeneValue(c.genes[i].geneValue);
+            }
+            this.access = (SParkGAAccessory)c.access.clone();
+            setMutationProbability(c.getMutationProbability());
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(ChromosomeGA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
-    public ChromosomeGA(int size, GAUtils gaUtils){
-        genes = new GeneGA[size];
-        for(int i=0; i<size; i++){
-            genes[i].setRandom();
-        }
-        this.gaUtils = gaUtils;
-        
-    }
-    public ChromosomeGA(ChromosomeGA c, GAUtils gaUtils){
-        genes = new GeneGA[c.genes.length];
-        for(int i=0; i<genes.length; i++){
-            genes[i] = c.genes[i];
-        }
-        this.gaUtils = gaUtils;
-        
-    }
     
     public void setMutationProbability(double prob){
         this.mutationProb = prob;
@@ -47,12 +59,21 @@ public class ChromosomeGA implements SparkEA.Chromosome{
     
     @Override
     public void print() {
-        
+        System.out.print("[");
+        for(int i=0; i<genes.length; i++){
+            System.out.print((int)genes[i].getGeneValue() + " ");
+        }
+        System.out.println("]");
+    }
+    
+    @Override
+    public int getLength(){
+        return genes.length;
     }
     
     @Override
     public double getFitnessValue() {
-        return gaUtils.fitnessFunction(this);
+        return access.fitnessFunction(this);
     }
 
     @Override
@@ -62,12 +83,12 @@ public class ChromosomeGA implements SparkEA.Chromosome{
 
     @Override
     public Gene getGene(int index) {
-        return null;
+        return genes[index];
     }
 
 
-    public void setGene(int index, GeneGA gene) {
-        this.genes[index] = gene;
+    public void setGene(int index, int value) {
+        this.genes[index].setGeneValue(value);
     }
     
     public void mutate(){
@@ -78,8 +99,8 @@ public class ChromosomeGA implements SparkEA.Chromosome{
     
     public ArrayList<ChromosomeGA> uniformCrossover(ChromosomeGA chrome2){
         ArrayList<ChromosomeGA> children = new ArrayList<>();
-        ChromosomeGA c1 = new ChromosomeGA(this, gaUtils);
-        ChromosomeGA c2 = new ChromosomeGA(chrome2, gaUtils);
+        ChromosomeGA c1 = new ChromosomeGA(this);
+        ChromosomeGA c2 = new ChromosomeGA(chrome2);
         for(int i=0; i<genes.length; i++){
             if(Math.random() > 0.5){
                 c1.genes[i] = chrome2.genes[i];

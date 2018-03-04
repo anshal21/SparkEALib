@@ -16,7 +16,7 @@ import java.util.List;
 public class SurvivalSelection {
      private double[] cumulativeFitness;
     
-     public List<Chromosome> RouletteWheelSelection(List<Chromosome> population, List<Chromosome> offSpring){
+     public static List<Chromosome> RouletteWheelSelection(List<Chromosome> population, List<Chromosome> offSpring){
         int selectionSize = population.size();
         population.addAll(offSpring);
         return Utility.RouletteWheel(population, selectionSize);

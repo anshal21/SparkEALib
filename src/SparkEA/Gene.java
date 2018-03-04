@@ -5,10 +5,13 @@
  */
 package SparkEA;
 
+import java.io.Serializable;
+
 /**
  *
  * @author anshal
  */
-public interface Gene {
+public interface Gene extends Serializable{
     public void setRandom();
+    public double getGeneValue();
 }

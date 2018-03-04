@@ -3,13 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/ChromosomeGA.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Selection/Utility.java</file>
             <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Selection/SurvivalSelection.java</file>
             <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Gene.java</file>
             <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/GeneGA.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/SurvivorSelection.java</file>
             <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Selection/ParentSelection.java</file>
             <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Chromosome.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/ChromosomeGA.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Selection/Utility.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/Worker.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/SParkGAAccessory.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/ParallelizationEngine/SimpleDistributor.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/Solver.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/ParentSlection.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/Results.java</file>
         </group>
     </open-files>
 </project-private>
