@@ -6,7 +6,7 @@
 package SparkEA.SparkGA;
 
 import SparkEA.Chromosome;
-import SparkEA.Selection.Utility;
+import SparkEA.Selection.SelectionMethods;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class SurvivorSelection {
         ArrayList<Chromosome> tmp = new ArrayList<>();
         for(int i=0; i<population.size(); i++)
             tmp.add(population.get(i));
-        tmp = (ArrayList<Chromosome>)Utility.RouletteWheel(tmp, selectionSize);
+        tmp = (ArrayList<Chromosome>)SelectionMethods.RouletteWheel(tmp, selectionSize);
         population.removeAll(population);
         for(int i=0; i<tmp.size(); i++)
             population.add((ChromosomeGA)tmp.get(i));

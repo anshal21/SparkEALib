@@ -120,5 +120,9 @@ public class ChromosomeGA implements SparkEA.Chromosome{
         }
         return 1;
     }
+    
+    public static ChromosomeGA combine(ChromosomeGA c1, ChromosomeGA c2){
+        return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
+    }
    
 }

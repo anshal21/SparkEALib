@@ -38,11 +38,11 @@ public class Results {
        Worker worker = new Worker(solve, access, populationSize, chromosomeLength);
        System.out.println("==========I am here================ -2.0");
        ArrayList<Worker> ds = (ArrayList<Worker>) worker.fork(4);
-       ds.get(3).Solver();
        JavaRDD<Worker> dataSet = jsc.parallelize(ds);
-       //JavaRDD<ChromosomeGA> finalists = dataSet.map(Worker::Solver);
-       //System.out.println(finalists.count());
+       JavaRDD<ChromosomeGA> finalists = dataSet.map(Worker::Solver);
+       System.out.println(finalists.count());
        System.out.println("Slices: " + dataSet.count());
-       return null;
+       ChromosomeGA bestChromosome = finalists.reduce(ChromosomeGA::combine);
+       return bestChromosome;
     }
 }

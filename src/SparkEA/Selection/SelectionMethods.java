@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author anshal
  */
-public class Utility {
+public class SelectionMethods {
     
     public static int upperBound(double arr[], double val){
         int lo = 0, hi = arr.length-1;
