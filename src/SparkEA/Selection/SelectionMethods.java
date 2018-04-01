@@ -31,7 +31,7 @@ public class SelectionMethods {
         return ans;
     }
     
-    public static List<Chromosome> RouletteWheel(List<Chromosome> population, int selectionSize){
+    public static ArrayList<Chromosome> RouletteWheel(List<Chromosome> population, int selectionSize){
         double[] cumulativeFitness;
         System.err.println(population.size());
         cumulativeFitness = new double[population.size()];
@@ -39,7 +39,7 @@ public class SelectionMethods {
         for(int i=1; i<population.size(); i++){
             cumulativeFitness[i] = cumulativeFitness[i-1] + population.get(i).getFitnessValue();
         }
-        List<Chromosome> selectedParents = new ArrayList<Chromosome>();
+        ArrayList<Chromosome> selectedParents = new ArrayList<Chromosome>();
         for(int i=0; i<selectionSize; i++){
             double token = Math.random()*cumulativeFitness[cumulativeFitness.length - 1];
             int index = upperBound(cumulativeFitness, token);

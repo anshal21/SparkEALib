@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SparkEA.SparkGA;
+package SparkEA.SparkGA.BinaryRepresentation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,8 +15,11 @@ import java.util.logging.Logger;
  * @author anshal
  */
 public  class Solver implements Cloneable, Serializable{
-    public  ChromosomeGA solver(ArrayList<ChromosomeGA> population){return null;
-};
+    
+    public  BinaryChromosome solver(ArrayList<BinaryChromosome> population){
+        return null;
+    };
+    
     public Solver clone(){
         try {
             return (Solver)super.clone();

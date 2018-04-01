@@ -3,20 +3,37 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Selection/SurvivalSelection.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Gene.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/GeneGA.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/SurvivorSelection.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Selection/ParentSelection.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Chromosome.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/ChromosomeGA.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Selection/Utility.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/Worker.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/SParkGAAccessory.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/BinaryRepresentation/BinaryChromosome.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/IntegerRepresentation/SurvivorSelection.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/BinaryRepresentation/Parameters.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/PermutationRepresentation/Results.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Selection/SelectionMethods.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/IntegerRepresentation/Worker.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/PermutationRepresentation/PermutationChromosome.java</file>
             <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/ParallelizationEngine/SimpleDistributor.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/Solver.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/ParentSlection.java</file>
-            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/Results.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/IntegerRepresentation/IntegerGene.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/IntegerRepresentation/ParentSelection.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/PermutationRepresentation/Worker.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/BinaryRepresentation/ParentSlection.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/test/Acc.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/IntegerRepresentation/IntegerChromosome.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/PermutationRepresentation/Solver.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/PermutationRepresentation/PermutationGene.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Accessories.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/test/TestMethods.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/IntegerRepresentation/Results.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Gene.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/IntegerRepresentation/Solver.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/BinaryRepresentation/Solver.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/BinaryRepresentation/Results.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Chromosome.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/BinaryRepresentation/Worker.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/IntegerRepresentation/Parameters.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/PermutationRepresentation/ParentSelection.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/PermutationRepresentation/SurvivorSelection.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/BinaryRepresentation/BinaryGene.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/Utility.java</file>
+            <file>file:/home/anshal/NetBeansProjects/SparkEALib/src/SparkEA/SparkGA/BinaryRepresentation/SurvivorSelection.java</file>
         </group>
     </open-files>
 </project-private>

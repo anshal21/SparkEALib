@@ -3,35 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SparkEA.SparkGA;
+package SparkEA.SparkGA.PermutationRepresentation;
 
+import SparkEA.Accessories;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 /**
  *
  * @author anshal
  */
 public class Worker implements Serializable{
-
-   
-    ArrayList<ChromosomeGA> population;
+    ArrayList<PermutationChromosome> population;
     Solver solve;
     
-    
-    public Worker(Solver solve, SParkGAAccessory access, int populationSize, int chromosomeLength){
+    public Worker(Solver solve, Accessories access, int populationSize, int[] iniPermutation){
         population = new ArrayList<>();
         for(int i=0; i<populationSize; i++){
-            ChromosomeGA ind = new ChromosomeGA(chromosomeLength, access);
+            PermutationChromosome ind = new PermutationChromosome(access, iniPermutation);
+            ind.rearrange();
             population.add(ind);
         }
         this.solve = solve;
     }
     
-    public Worker(Solver solve, ArrayList<ChromosomeGA> pop){
+    
+    public Worker(Solver solve, ArrayList<PermutationChromosome> pop){
         population = new ArrayList<>();
         System.out.println(pop.size()+"::::::");
         for(int i=0; i<pop.size(); i++){
@@ -41,7 +39,7 @@ public class Worker implements Serializable{
         this.solve = solve;
     }
     
-    public ChromosomeGA Solver(){
+    public PermutationChromosome Solver(){
         return solve.solver(population);
     }
     
@@ -49,7 +47,7 @@ public class Worker implements Serializable{
     
     public List<Worker> fork(int slices){
         System.out.println("I am forking bitch");
-        List<Worker> list = new ArrayList<>(slices);
+        List<Worker> list = new ArrayList<>();
         for(int i=0; i<slices-1; i++){
             Worker work = clone();
             
@@ -60,10 +58,10 @@ public class Worker implements Serializable{
     }
     
     public Worker clone(){
-        ArrayList<ChromosomeGA> clonePopulation = new ArrayList<>();
+        ArrayList<PermutationChromosome> clonePopulation = new ArrayList<>();
         for(int i=0; i<population.size(); i++){
             System.out.println("Cloning bitch...");
-            ChromosomeGA ind = new ChromosomeGA(population.get(i));
+            PermutationChromosome ind = new PermutationChromosome(population.get(i));
             clonePopulation.add(ind);
         }
         
@@ -73,10 +71,11 @@ public class Worker implements Serializable{
         System.out.println(work.population.size()+"CCCC");
         return work;
     }
-    public static ChromosomeGA getFittest(List<ChromosomeGA> population){
+    
+    public static PermutationChromosome getFittest(List<PermutationChromosome> population){
         if(population.size()==0)
             return null;
-        ChromosomeGA best = population.get(0);
+        PermutationChromosome best = population.get(0);
         double maxFitness = population.get(0).getFitnessValue();
         for(int i=1; i<population.size(); i++){
             if(maxFitness < population.get(i).getFitnessValue()){
@@ -88,10 +87,10 @@ public class Worker implements Serializable{
         
     }
     
-    public ChromosomeGA getFittest(){
+    public PermutationChromosome getFittest(){
        if(population.isEmpty())
            return null;
-       ChromosomeGA best = population.get(0);
+       PermutationChromosome best = population.get(0);
        double maxFitness = population.get(0).getFitnessValue();
        for(int i=1; i<population.size(); i++){
            if(maxFitness < population.get(i).getFitnessValue()){
@@ -103,5 +102,4 @@ public class Worker implements Serializable{
 
    }
     
-   
 }

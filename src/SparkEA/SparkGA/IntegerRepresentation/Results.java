@@ -3,25 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SparkEA.SparkGA;
+package SparkEA.SparkGA.IntegerRepresentation;
 
-import SparkEA.Chromosome;
+
+import SparkEA.Accessories;
 import java.util.ArrayList;
-import java.util.List;
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
 
 /**
  *
  * @author anshal
  */
-import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.SparkSession;
-
 public class Results {
     private JavaSparkContext jsc;
     private SparkConf config;
-    
     
     public Results(String appName, String master){
         config = new SparkConf().setAppName(appName).setMaster(master);
@@ -33,16 +30,28 @@ public class Results {
         jsc.close();
     }
     
-    public ChromosomeGA solve(Solver solve, SParkGAAccessory access, int populationSize, int chromosomeLength){
-       
+    private int geneLowerBound, geneUpperBound;
+    
+    
+    
+    public IntegerChromosome solve(Solver solve, Accessories access, int populationSize, int chromosomeLength){
        Worker worker = new Worker(solve, access, populationSize, chromosomeLength);
+       return solveInternal(worker);
+    }
+    
+    public IntegerChromosome solve(Solver solve, Accessories access, int populationSize, int chromosomeLength, int geneLowerBound, int geneUpperBound){  
+       Worker worker = new Worker(solve, access, populationSize, chromosomeLength, geneLowerBound, geneUpperBound);
+       return solveInternal(worker);
+    }
+    
+    private IntegerChromosome solveInternal(Worker worker){
        System.out.println("==========I am here================ -2.0");
        ArrayList<Worker> ds = (ArrayList<Worker>) worker.fork(4);
        JavaRDD<Worker> dataSet = jsc.parallelize(ds);
-       JavaRDD<ChromosomeGA> finalists = dataSet.map(Worker::Solver);
+       JavaRDD<IntegerChromosome> finalists = dataSet.map(Worker::Solver);
        System.out.println(finalists.count());
        System.out.println("Slices: " + dataSet.count());
-       ChromosomeGA bestChromosome = finalists.reduce(ChromosomeGA::combine);
+       IntegerChromosome bestChromosome = finalists.reduce(IntegerChromosome::combine);
        return bestChromosome;
-    }
+    } 
 }

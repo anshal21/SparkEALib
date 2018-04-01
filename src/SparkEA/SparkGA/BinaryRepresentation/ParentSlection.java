@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SparkEA.SparkGA;
+package SparkEA.SparkGA.BinaryRepresentation;
 
 import SparkEA.Chromosome;
 import SparkEA.Selection.SelectionMethods;
@@ -15,27 +15,27 @@ import java.util.List;
  * @author anshal
  */
 public class ParentSlection {
-    public static ArrayList<ChromosomeGA> RouletteWheelSelection(ArrayList<ChromosomeGA> population){
+    public static ArrayList<BinaryChromosome> RouletteWheelSelection(ArrayList<BinaryChromosome> population){
         ArrayList<Chromosome> tmp = new ArrayList<>();
         for(int i=0; i<population.size(); i++)
             tmp.add(population.get(i));
-        tmp = (ArrayList<Chromosome>)SelectionMethods.RouletteWheel(tmp,tmp.size());
+        tmp = SelectionMethods.RouletteWheel(tmp,tmp.size());
         population.removeAll(population);
         for(int i=0; i<population.size(); i++)
-            population.add((ChromosomeGA)tmp.get(i));
+            population.add((BinaryChromosome)tmp.get(i));
         return population;
     }
     
-    public static ArrayList<ChromosomeGA> RouletteWheelSelection(ArrayList<ChromosomeGA> population, int selectionSize){
+    public static ArrayList<BinaryChromosome> RouletteWheelSelection(ArrayList<BinaryChromosome> population, int selectionSize){
         ArrayList<Chromosome> tmp = new ArrayList<>();
         for(int i=0; i<population.size(); i++)
             tmp.add(population.get(i));
         
-        tmp = (ArrayList<Chromosome>)SelectionMethods.RouletteWheel(tmp,selectionSize);
+        tmp = SelectionMethods.RouletteWheel(tmp,selectionSize);
         //System.out.println("Inside parent roulettwheel: " + tmp.size());
         population.removeAll(population);
         for(int i=0; i<tmp.size(); i++)
-            population.add((ChromosomeGA)tmp.get(i));
+            population.add((BinaryChromosome)tmp.get(i));
         return population;
     }
     
