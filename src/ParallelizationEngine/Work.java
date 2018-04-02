@@ -6,6 +6,7 @@
 package ParallelizationEngine;
 
 import SparkEA.Chromosome;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,6 @@ import SparkEA.Chromosome;
  */
 public interface Work {
     public Chromosome solver();
+    public List<Work> fork(int slices);
+    
 }

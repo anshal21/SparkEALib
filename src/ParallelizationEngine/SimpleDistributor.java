@@ -28,9 +28,20 @@ public class SimpleDistributor {
         jsc = new JavaSparkContext(config);
         jsc.addJar("/home/anshal/NetBeansProjects/SparkEALib/dist/SparkEALib.jar");
     }
+    
+    public Chromosome distribute(Work worker, int parellizatioFactor){
+        ArrayList<Work> ds = (ArrayList<Work>) worker.fork(parellizatioFactor);
+        return parellelRun(ds);
+    }
+    public Chromosome distribute(Work worker){
+        ArrayList<Work> ds = (ArrayList<Work>) worker.fork(jsc.defaultParallelism());
+        return parellelRun(ds);
+    }
+    
     public Chromosome parellelRun(ArrayList<Work> ds){
        JavaRDD<Work> dataSet = jsc.parallelize(ds);
        JavaRDD<Chromosome> finalists = dataSet.map(Work::solver);
+       System.out.println("I am here -------------XXXXXXXXXX");
        System.out.println(finalists.count());
        System.out.println("Slices: " + dataSet.count());
      //  Chromosome bestChromosome = finalists.reduce(Work::combine);
