@@ -5,6 +5,8 @@
  */
 package SparkEA.SparkGA.PermutationRepresentation;
 
+import ParallelizationEngine.SimpleDistributor;
+import ParallelizationEngine.Work;
 import SparkEA.Accessories;
 import java.util.ArrayList;
 import org.apache.spark.SparkConf;
@@ -18,17 +20,15 @@ import org.apache.spark.api.java.JavaSparkContext;
 public class Results {
     private JavaSparkContext jsc;
     private SparkConf config;
+    SimpleDistributor sd;
     
     public Results(String appName, String master){
-        config = new SparkConf().setAppName(appName).setMaster(master);
-        jsc = new JavaSparkContext(config);
-        jsc.addJar("/home/anshal/NetBeansProjects/SparkEALib/dist/SparkEALib.jar");
+          sd = new SimpleDistributor(appName, master);
     }
     
     public void stop(){
         jsc.close();
     }
-    
     private int geneLowerBound, geneUpperBound;
     
     
@@ -40,13 +40,7 @@ public class Results {
     
   
     private PermutationChromosome solveInternal(Worker worker){
-       System.out.println("==========I am here================ -2.0");
-       ArrayList<Worker> ds = (ArrayList<Worker>) worker.fork(4);
-       JavaRDD<Worker> dataSet = jsc.parallelize(ds);
-       JavaRDD<PermutationChromosome> finalists = dataSet.map(Worker::Solver);
-       System.out.println(finalists.count());
-       System.out.println("Slices: " + dataSet.count());
-       PermutationChromosome bestChromosome = finalists.reduce(PermutationChromosome::combine);
-       return bestChromosome;
+       ArrayList<Work> ds = (ArrayList<Work>) worker.fork(4);
+       return (PermutationChromosome)sd.parellelRun(ds);
     } 
 }

@@ -5,7 +5,9 @@
  */
 package SparkEA.SparkGA.BinaryRepresentation;
 
+import ParallelizationEngine.Work;
 import SparkEA.Accessories;
+import SparkEA.Chromosome;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.stream.Collectors;
  *
  * @author anshal
  */
-public class Worker implements Serializable{
+public class Worker implements Serializable, Work{
 
    
     ArrayList<BinaryChromosome> population;
@@ -48,9 +50,9 @@ public class Worker implements Serializable{
     
     
     
-    public List<Worker> fork(int slices){
+    public List<Work> fork(int slices){
         System.out.println("I am forking bitch");
-        List<Worker> list = new ArrayList<>(slices);
+        List<Work> list = new ArrayList<>(slices);
         for(int i=0; i<slices-1; i++){
             Worker work = clone();
             
@@ -103,6 +105,9 @@ public class Worker implements Serializable{
        return best;
 
    }
-    
+ 
+    public Chromosome solver(){
+        return (Chromosome)solve.solver(population);
+    }
    
 }

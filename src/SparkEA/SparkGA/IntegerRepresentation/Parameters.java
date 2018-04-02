@@ -6,12 +6,13 @@
 package SparkEA.SparkGA.IntegerRepresentation;
 
 import SparkEA.Params;
+import java.io.Serializable;
 
 /**
  *
  * @author anshal
  */
-public class Parameters extends Params{
+public class Parameters extends Params implements Serializable{
     private double RandomResettingProbability;
     private double crossoverProbability;
     

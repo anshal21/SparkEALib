@@ -56,4 +56,7 @@ public class Utility {
             return true;
         return false;
     }
+    public static Chromosome combine(Chromosome c1, Chromosome c2){
+        return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
+    } 
 }

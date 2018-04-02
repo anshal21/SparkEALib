@@ -12,11 +12,14 @@ import java.util.List;
  *
  * @author anshal
  */
-public interface Chromosome extends Comparable<Chromosome>, Serializable{
-   public void print();
-   public double getFitnessValue();
-   public Gene getRandomGene();
-   public Gene getGene(int index);
-   public int getLength();
+public abstract class Chromosome implements Comparable<Chromosome>, Serializable{
+   public abstract void print();
+   public abstract double getFitnessValue();
+   public abstract Gene getRandomGene();
+   public abstract Gene getGene(int index);
+   public abstract int getLength();
+   public Chromosome merge(Chromosome c1, Chromosome c2){
+        return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
+   }
  
 }

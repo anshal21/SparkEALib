@@ -5,7 +5,10 @@
  */
 package SparkEA.SparkGA.IntegerRepresentation;
 
+import ParallelizationEngine.Work;
 import SparkEA.Accessories;
+import SparkEA.Chromosome;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +16,7 @@ import java.util.List;
  *
  * @author anshal
  */
-public class Worker {
+public class Worker implements Work,Serializable{
     ArrayList<IntegerChromosome> population;
     Solver solve;
     
@@ -46,15 +49,16 @@ public class Worker {
         this.solve = solve;
     }
     
-    public IntegerChromosome Solver(){
-        return solve.solver(population);
+    @Override
+    public Chromosome solver(){
+        return (Chromosome)solve.solver(population);
     }
     
     
     
-    public List<Worker> fork(int slices){
+     public List<Work> fork(int slices){
         System.out.println("I am forking bitch");
-        List<Worker> list = new ArrayList<>();
+        List<Work> list = new ArrayList<>(slices);
         for(int i=0; i<slices-1; i++){
             Worker work = clone();
             

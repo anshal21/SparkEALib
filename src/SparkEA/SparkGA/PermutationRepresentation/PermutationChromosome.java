@@ -16,7 +16,7 @@ import java.util.HashMap;
  *
  * @author anshal
  */
-public class PermutationChromosome implements Chromosome{
+public class PermutationChromosome extends Chromosome{
    
     private PermutationGene genes[];
     private Accessories access;
@@ -191,7 +191,9 @@ public class PermutationChromosome implements Chromosome{
         return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
     }
 
-    
+    public Chromosome merge(Chromosome c1, Chromosome c2){
+        return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
+    }
     
     
 }

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author anshal
  */
-public class BinaryChromosome implements SparkEA.Chromosome{
+public class BinaryChromosome extends SparkEA.Chromosome{
     
     private BinaryGene[] genes;
     private Accessories access;
@@ -112,4 +112,8 @@ public class BinaryChromosome implements SparkEA.Chromosome{
         return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
     }
    
+    public Chromosome merge(Chromosome c1, Chromosome c2){
+        return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
+    }
+    
 }

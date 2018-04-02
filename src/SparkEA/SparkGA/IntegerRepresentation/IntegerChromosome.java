@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author anshal
  */
-public class IntegerChromosome implements Chromosome{
+public class IntegerChromosome extends Chromosome{
     private IntegerGene genes[];
     private Accessories access;
     private Parameters params;
@@ -113,5 +113,5 @@ public class IntegerChromosome implements Chromosome{
     public static IntegerChromosome combine(IntegerChromosome c1, IntegerChromosome c2){
         return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
     }
-
+    
 }

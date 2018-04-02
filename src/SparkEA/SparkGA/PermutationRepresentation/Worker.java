@@ -5,7 +5,9 @@
  */
 package SparkEA.SparkGA.PermutationRepresentation;
 
+import ParallelizationEngine.Work;
 import SparkEA.Accessories;
+import SparkEA.Chromosome;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  *
  * @author anshal
  */
-public class Worker implements Serializable{
+public class Worker implements Serializable,Work{
     ArrayList<PermutationChromosome> population;
     Solver solve;
     
@@ -39,15 +41,16 @@ public class Worker implements Serializable{
         this.solve = solve;
     }
     
-    public PermutationChromosome Solver(){
-        return solve.solver(population);
+    @Override
+    public Chromosome solver(){
+        return (Chromosome)solve.solver(population);
     }
     
     
     
-    public List<Worker> fork(int slices){
+    public List<Work> fork(int slices){
         System.out.println("I am forking bitch");
-        List<Worker> list = new ArrayList<>();
+        List<Work> list = new ArrayList<>();
         for(int i=0; i<slices-1; i++){
             Worker work = clone();
             

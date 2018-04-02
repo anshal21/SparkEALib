@@ -5,6 +5,8 @@
  */
 package SparkEA.SparkGA.BinaryRepresentation;
 
+import ParallelizationEngine.SimpleDistributor;
+import ParallelizationEngine.Work;
 import SparkEA.Accessories;
 import SparkEA.Chromosome;
 import java.util.ArrayList;
@@ -22,12 +24,10 @@ import org.apache.spark.sql.SparkSession;
 public class Results {
     private JavaSparkContext jsc;
     private SparkConf config;
-    
+    SimpleDistributor sd;
     
     public Results(String appName, String master){
-        config = new SparkConf().setAppName(appName).setMaster(master);
-        jsc = new JavaSparkContext(config);
-        jsc.addJar("/home/anshal/NetBeansProjects/SparkEALib/dist/SparkEALib.jar");
+          sd = new SimpleDistributor(appName, master);
     }
     
     public void stop(){
@@ -35,15 +35,8 @@ public class Results {
     }
     
     public BinaryChromosome solve(Solver solve, Accessories access, int populationSize, int chromosomeLength){
-       
        Worker worker = new Worker(solve, access, populationSize, chromosomeLength);
-       System.out.println("==========I am here================ -2.0");
-       ArrayList<Worker> ds = (ArrayList<Worker>) worker.fork(4);
-       JavaRDD<Worker> dataSet = jsc.parallelize(ds);
-       JavaRDD<BinaryChromosome> finalists = dataSet.map(Worker::Solver);
-       System.out.println(finalists.count());
-       System.out.println("Slices: " + dataSet.count());
-       BinaryChromosome bestChromosome = finalists.reduce(BinaryChromosome::combine);
-       return bestChromosome;
+       ArrayList<Work> ds = (ArrayList<Work>) worker.fork(4);
+       return (BinaryChromosome)sd.parellelRun(ds);
     }
 }

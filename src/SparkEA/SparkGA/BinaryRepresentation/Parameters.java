@@ -6,12 +6,13 @@
 package SparkEA.SparkGA.BinaryRepresentation;
 
 import SparkEA.Params;
+import java.io.Serializable;
 
 /**
  *
  * @author anshal
  */
-public class Parameters extends Params{
+public class Parameters extends Params implements Serializable{
     private double mutationProbability;
     private double uniformCrossoverProbability;
     
