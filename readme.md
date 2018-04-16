@@ -23,7 +23,7 @@ As genetic algorithms involves randomness, so each algorithm run involves a prob
 <li>Permutation Representation</li> 
 <li>ParallelizationEngine</li>
 
-
+</ul>
 
 <h3>Description of Classes:</h3>
 
