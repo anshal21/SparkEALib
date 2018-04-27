@@ -14,12 +14,11 @@ import java.util.logging.Logger;
  *
  * @author anshal
  */
-public  class Solver implements Cloneable, Serializable{
+public abstract  class Solver implements Cloneable, Serializable{
     
-    public  BinaryChromosome solver(ArrayList<BinaryChromosome> population){
-        return null;
-    };
+    public abstract  BinaryChromosome solver(ArrayList<BinaryChromosome> population);
     
+    @Override
     public Solver clone(){
         try {
             return (Solver)super.clone();

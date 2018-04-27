@@ -5,9 +5,10 @@
  */
 package SparkEA.SparkGA.IntegerRepresentation;
 
-import ParallelizationEngine.Work;
+import SparkEA.Work;
 import SparkEA.Accessories;
 import SparkEA.Chromosome;
+import SparkEA.Params;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +42,9 @@ public class Worker implements Work,Serializable{
     
     public Worker(Solver solve, ArrayList<IntegerChromosome> pop){
         population = new ArrayList<>();
-        System.out.println(pop.size()+"::::::");
         for(int i=0; i<pop.size(); i++){
             this.population.add(pop.get(i));
         }
-        System.out.println(this.population.size()+"XXXXX");
         this.solve = solve;
     }
     
@@ -57,7 +56,6 @@ public class Worker implements Work,Serializable{
     
     
      public List<Work> fork(int slices){
-        System.out.println("I am forking bitch");
         List<Work> list = new ArrayList<>(slices);
         for(int i=0; i<slices-1; i++){
             Worker work = clone();
@@ -71,7 +69,6 @@ public class Worker implements Work,Serializable{
     public Worker clone(){
         ArrayList<IntegerChromosome> clonePopulation = new ArrayList<>();
         for(int i=0; i<population.size(); i++){
-            System.out.println("Cloning bitch...");
             IntegerChromosome ind = new IntegerChromosome(population.get(i));
             clonePopulation.add(ind);
         }
@@ -79,7 +76,6 @@ public class Worker implements Work,Serializable{
         Solver nSolve = solve.clone();
         
         Worker work=new Worker(nSolve, clonePopulation);
-        System.out.println(work.population.size()+"CCCC");
         return work;
     }
     
@@ -112,5 +108,36 @@ public class Worker implements Work,Serializable{
        return best;
 
    }
+
+   @Override
+    public List<Work> fork(int slices, ArrayList<Params> params) {
+        List<Work> list = new ArrayList<>(slices);
+        int ind=0;
+        for(int i=0; i<slices-1; i++){
+            Worker work = clone(params.get(ind));
+            ind=(ind+1)%params.size();
+            list.add(work);
+        }
+        list.add(this);
+        return list;
+    }
+    public Worker clone(Params p){
+        ArrayList<IntegerChromosome> clonePopulation = new ArrayList<>();
+        for(int i=0; i<population.size(); i++){
+            IntegerChromosome ind = new IntegerChromosome(population.get(i),p);
+            clonePopulation.add(ind);
+        }
+        
+        Solver nSolve = solve.clone();
+        
+        Worker work=new Worker(nSolve, clonePopulation);
+        System.out.println(work.population.size()+"CCCC");
+        return work;
+    }
+    
+    @Override
+    public Chromosome getPopulation(int index){
+        return population.get(index);
+    }
     
 }

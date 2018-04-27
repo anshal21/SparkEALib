@@ -8,6 +8,7 @@ package SparkEA.SparkGA.PermutationRepresentation;
 import SparkEA.Accessories;
 import SparkEA.Chromosome;
 import SparkEA.Gene;
+import SparkEA.Params;
 import SparkEA.Utility;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -88,7 +89,7 @@ public class PermutationChromosome extends Chromosome{
         genes[index2] = tmp;
     }
     
-    public void scramblePermutation(){
+    public void scrambleMutation(){
         int index1 = Utility.getRandomInt(this.getLength()-1);
         int index2 = Utility.getRandomInt(this.getLength()-1);
         if(index2 < index1){
@@ -193,6 +194,11 @@ public class PermutationChromosome extends Chromosome{
 
     public Chromosome merge(Chromosome c1, Chromosome c2){
         return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
+    }
+
+    @Override
+    public Params getParams() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

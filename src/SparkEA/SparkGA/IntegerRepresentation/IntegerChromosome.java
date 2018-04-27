@@ -8,6 +8,7 @@ package SparkEA.SparkGA.IntegerRepresentation;
 import SparkEA.Accessories;
 import SparkEA.Chromosome;
 import SparkEA.Gene;
+import SparkEA.Params;
 import SparkEA.Utility;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -30,6 +31,15 @@ public class IntegerChromosome extends Chromosome{
             genes[i] = new IntegerGene();   
         }
         this.access = (Accessories)accessories.clone();
+    }
+     public IntegerChromosome(IntegerChromosome c, Params p){
+        genes = new IntegerGene[c.getLength()];
+        for(int i=0; i<genes.length; i++){
+            genes[i] = c.genes[i].clone();
+        }
+        this.access = (Accessories)c.access.clone();
+        this.params = (Parameters)p.clone();
+        
     }
     
     public IntegerChromosome(int size, Accessories accessories, int geneLowerLimit, int geneUpperLimit){
@@ -112,6 +122,11 @@ public class IntegerChromosome extends Chromosome{
     
     public static IntegerChromosome combine(IntegerChromosome c1, IntegerChromosome c2){
         return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
+    }
+
+    @Override
+    public Params getParams() {
+        return params;
     }
     
 }

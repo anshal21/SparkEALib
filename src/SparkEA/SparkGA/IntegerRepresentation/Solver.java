@@ -14,11 +14,9 @@ import java.util.logging.Logger;
  *
  * @author anshal
  */
-public  class Solver implements Cloneable, Serializable{
+public  abstract class Solver implements Cloneable, Serializable{
     
-    public  IntegerChromosome solver(ArrayList<IntegerChromosome> population){
-        return null;
-    };
+    public abstract IntegerChromosome solver(ArrayList<IntegerChromosome> population);
     
     public Solver clone(){
         try {

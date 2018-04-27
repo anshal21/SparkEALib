@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ParallelizationEngine;
+package SparkEA;
 
 import SparkEA.Chromosome;
+import SparkEA.Params;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,5 +17,6 @@ import java.util.List;
 public interface Work {
     public Chromosome solver();
     public List<Work> fork(int slices);
-    
+    public List<Work> fork(int slices, ArrayList<Params> params);
+    public Chromosome getPopulation(int index);
 }

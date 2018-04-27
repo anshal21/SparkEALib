@@ -5,6 +5,7 @@
  */
 package ParallelizationEngine;
 
+import SparkEA.Work;
 import SparkEA.Chromosome;
 import SparkEA.SparkGA.BinaryRepresentation.BinaryChromosome;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class SimpleDistributor {
     
     
     public SimpleDistributor(String appName, String master){
-        config = new SparkConf().setAppName(appName).setMaster(master);
+        config = new SparkConf().setAppName(appName+" - SimpleDistributor").setMaster(master);
         jsc = new JavaSparkContext(config);
         jsc.addJar("/home/anshal/NetBeansProjects/SparkEALib/dist/SparkEALib.jar");
     }
@@ -34,8 +35,7 @@ public class SimpleDistributor {
         return parellelRun(ds);
     }
     public Chromosome distribute(Work worker){
-        ArrayList<Work> ds = (ArrayList<Work>) worker.fork(jsc.defaultParallelism());
-        return parellelRun(ds);
+        return distribute(worker,jsc.defaultParallelism());
     }
     
     public Chromosome parellelRun(ArrayList<Work> ds){

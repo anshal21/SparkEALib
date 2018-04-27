@@ -43,7 +43,10 @@ public class SelectionMethods {
         for(int i=0; i<selectionSize; i++){
             double token = Math.random()*cumulativeFitness[cumulativeFitness.length - 1];
             int index = upperBound(cumulativeFitness, token);
+            index = Math.min(index, population.size()-1);
+            index = Math.max(index,0);
             selectedParents.add(population.get(index));
+            
         }
         return selectedParents;
     }

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  *
  * @author anshal
  */
-public class Params implements Cloneable{
+public abstract class Params implements Cloneable{
     @Override
     public Params clone(){
         try {
@@ -22,4 +22,7 @@ public class Params implements Cloneable{
         }
         return null;
      }
+    public abstract Params upgrade();    
+    public abstract void print();
+    
 }

@@ -8,6 +8,7 @@ package SparkEA.SparkGA.BinaryRepresentation;
 import SparkEA.Accessories;
 import SparkEA.Chromosome;
 import SparkEA.Gene;
+import SparkEA.Params;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -39,6 +40,15 @@ public class BinaryChromosome extends SparkEA.Chromosome{
         }
         this.access = (Accessories)c.access.clone();
         this.params = (Parameters)c.params.clone();
+        
+    }
+     public BinaryChromosome(BinaryChromosome c, Params p){
+        genes = new BinaryGene[c.getLength()];
+        for(int i=0; i<genes.length; i++){
+            genes[i] = c.genes[i].clone();
+        }
+        this.access = (Accessories)c.access.clone();
+        this.params = (Parameters)p.clone();
         
     }
     
@@ -114,6 +124,11 @@ public class BinaryChromosome extends SparkEA.Chromosome{
    
     public Chromosome merge(Chromosome c1, Chromosome c2){
         return ((c1.getFitnessValue() > c2.getFitnessValue())?c1:c2);
+    }
+
+    @Override
+    public Params getParams() {
+        return params;
     }
     
 }

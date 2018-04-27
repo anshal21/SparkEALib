@@ -5,9 +5,10 @@
  */
 package SparkEA.SparkGA.PermutationRepresentation;
 
-import ParallelizationEngine.Work;
+import SparkEA.Work;
 import SparkEA.Accessories;
 import SparkEA.Chromosome;
+import SparkEA.Params;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +34,9 @@ public class Worker implements Serializable,Work{
     
     public Worker(Solver solve, ArrayList<PermutationChromosome> pop){
         population = new ArrayList<>();
-        System.out.println(pop.size()+"::::::");
         for(int i=0; i<pop.size(); i++){
             this.population.add(pop.get(i));
         }
-        System.out.println(this.population.size()+"XXXXX");
         this.solve = solve;
     }
     
@@ -49,7 +48,6 @@ public class Worker implements Serializable,Work{
     
     
     public List<Work> fork(int slices){
-        System.out.println("I am forking bitch");
         List<Work> list = new ArrayList<>();
         for(int i=0; i<slices-1; i++){
             Worker work = clone();
@@ -63,7 +61,6 @@ public class Worker implements Serializable,Work{
     public Worker clone(){
         ArrayList<PermutationChromosome> clonePopulation = new ArrayList<>();
         for(int i=0; i<population.size(); i++){
-            System.out.println("Cloning bitch...");
             PermutationChromosome ind = new PermutationChromosome(population.get(i));
             clonePopulation.add(ind);
         }
@@ -71,7 +68,6 @@ public class Worker implements Serializable,Work{
         Solver nSolve = solve.clone();
         
         Worker work=new Worker(nSolve, clonePopulation);
-        System.out.println(work.population.size()+"CCCC");
         return work;
     }
     
@@ -104,5 +100,13 @@ public class Worker implements Serializable,Work{
        return best;
 
    }
-    
+
+    @Override
+    public List<Work> fork(int slices, ArrayList<Params> params) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    @Override
+    public Chromosome getPopulation(int index){
+        return population.get(index);
+    }
 }

@@ -12,12 +12,11 @@ import java.util.ArrayList;
  *
  * @author anshal
  */
-public  class Solver implements Cloneable, Serializable{
+public abstract class Solver implements Cloneable, Serializable{
     
-    public  PermutationChromosome solver(ArrayList<PermutationChromosome> population){
-        return null;
-    };
+    public abstract PermutationChromosome solver(ArrayList<PermutationChromosome> population);
     
+    @Override
     public Solver clone(){
         try {
             return (Solver)super.clone();
