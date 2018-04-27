@@ -31,9 +31,11 @@ As genetic algorithms involves randomness, so each algorithm run involves a prob
 
 <b>Accessories:</b> Accessories is the common class between all type of representation which provides an interface to the user of library to provide an implementation of the “Fitness Function”
 
+
 <b>Gene:</b> Gene is an abstract class for gene which is inherited by all different types of gene and some necessary functions are override-ed accordingly. E.g. getGene, setGene, loweBound, upperBound
 
-<b>Chromosome:</b> Similar to Gene Chromosome is also a general class which contains signature and few implementation of all the necessary functions of a Chromosome and is inherited by all the Specific Chromosome like BinaryChromosome, IntegerChromosom etc. Contains the functions like getFitnessValue, getGene etc.
+<b>Chromosome:</b> Similar to Gene Chromosome is also a general class which contains signature and few implementation of all the necessary functions of a Chromosome and is inherited by all the Specific Chromosome like BinaryChromosome, IntegerChromosom etc.
+Contains the functions like getFitnessValue, getGene etc.
 
 <b>Params:</b> Params is the General class for parameter settings of a Chromosome, this is inherited by all the specific Parameter classes and contains signature of some basic function and is mostly used for Run-Time Polymorphism to avoid repetition of Code.
 
@@ -72,4 +74,11 @@ As genetic algorithms involves randomness, so each algorithm run involves a prob
 <b>SimpleDistributor:</b> Creates a Spark Application and Replicates the single Worker unit provided by user using fork and then runs them and aggregates the results at the end and returns the Fittest Chromosome after aggregation.
 
 <b>AdvanceDistributor:</b> Creates a Spark Application, Replicates the single Worker unit into many while updating their Parameters according to the change rates provided by user. Runs these worker units with different parameters in parallel and aggregates the result and returns the fittest Chromosome.
+
+
+<b> Commands to Run Different Test Samples </b> 
+<ul> 
+  <li> Subset-Sum Problem: ./bin/spark-submit --class testsparkealib.Binary.TestSparkEALib /home/anshal/NetBeansProjects/TestSparkEALib/dist/TestSparkEALib.jar </li>
+  <li> N-Queen: ./bin/spark-submit --class testsparkealib.Permutation.PermutationTest  /home/anshal/NetBeansProjects/TestSparkEALib/dist/TestSparkEALib.jar</li>
+  <li> Load Balancing: ./bin/spark-submit --class testsparkealib.IntegerPresentation.GuiMain  /home/anshal/NetBeansProjects/TestSparkEALib/dist/TestSparkEALib.jar</li>
 
